@@ -1,0 +1,7 @@
+.card-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* 1줄까지만 표시 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

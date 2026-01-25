@@ -7,7 +7,7 @@ const Header = () => {
       <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
         <Container>
           {/* 브랜드 로고 */}
-          <Navbar.Brand href="/">Movie&Tv Pado</Navbar.Brand>
+          <Navbar.Brand href="/tmdb-vite-pado/">Movie&Tv Pado</Navbar.Brand>
 
           {/* 햄버거 버튼 */}
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -15,8 +15,10 @@ const Header = () => {
           {/* 메뉴 래핑 */}
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav>
-              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/tmdb-vite-pado/">Home</Nav.Link>
               <Nav.Link href="/tmdb-vite-pado/movies">Movie</Nav.Link>
+              <Nav.Link href="/tmdb-vite-pado/tvs">TV</Nav.Link>
+              <Nav.Link href="/tmdb-vite-pado/search">Search</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
