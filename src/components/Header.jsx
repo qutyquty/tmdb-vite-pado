@@ -16,6 +16,7 @@ const Header = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav>
               <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/tmdb-vite-pado/movies">Movie</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
