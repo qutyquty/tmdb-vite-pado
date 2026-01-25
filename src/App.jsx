@@ -8,7 +8,7 @@ import './App.css';
 
 function App() {
   return (
-    <BrowserRouter basename="/tmdb-vite-pado">
+    <BrowserRouter basename="/tmdb-vite-pado/">
       <div className='main-content'>
         <Header />
         <main>
