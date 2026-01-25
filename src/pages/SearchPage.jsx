@@ -15,16 +15,18 @@ const SearchPage = () => {
     setQuery(q);
     setPage(1);
     const data = await searchMulti(q, 1);
-    setResults(data);
-    setHasMore(data.length > 0);
+    setResults(data.results);
+    // 전체 페이지 수 기준으로 hasMore 설정
+    setHasMore(data.page < data.total_pages);
   };
 
   const fetchMore = async () => {
     const nextPage = page + 1;
     const data = await searchMulti(query, nextPage);
-    setResults((prev) => [...prev, ...data]);
+    setResults((prev) => [...prev, ...data.results]);
     setPage(nextPage);
-    setHasMore(data.length > 0);
+    // 마지막 페이지 도달 여부 확인
+    setHasMore(data.page < data.total_pages);
   };
 
   return (

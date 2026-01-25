@@ -119,7 +119,13 @@ export const searchMulti = async (query, page = 1) => {
     params: { query, page },
   });
   // 영화/TV만 필터링
-  return res.data.results.filter(
+  const filteredResults = res.data.results.filter(
     (item) => item.media_type === "movie" || item.media_type === "tv"
   );
+
+  // 메타데이터 유지하면서 results만 교체
+  return {
+    ...res.data,
+    results: filteredResults,
+  };
 };
