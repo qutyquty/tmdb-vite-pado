@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
+import { Container, Spinner } from 'react-bootstrap';
 
 import { getMovieDetail, getTvDetail, getMovieCredits, getTvCredits, 
   getMovieVideos, getTvVideos, 
@@ -38,7 +38,15 @@ const DetailPage = () => {
     fetchData();
   }, [type, id]);
 
-  if (!data) return <p>Loading...</p>;
+  if (!data) {
+    return (
+      <div className='text-center my-4'>
+        <Spinner animation='border' role='status' variant='primary'>
+          <span className='visually-hidden'>Loading...</span>
+        </Spinner>
+      </div>
+    );    
+  }
 
   return (
     <Container className='mt-4'>
