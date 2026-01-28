@@ -12,7 +12,7 @@ const MediaCard = ({ item, type }) => {
     : "https://placehold.co/300x450?text=No+Image";
 
   return (
-    <Col md={2} className='mb-4'>
+    <Col xs={6} sm={4} md={2} className='mb-4'>
       <Card className='h-100 border shadow-sm'>
         <Link to={`/${type}/${item.id}`}>
           <Card.Img variant='top'

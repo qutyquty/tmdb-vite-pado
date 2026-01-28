@@ -21,7 +21,7 @@ const TvsPage = () => {
 
   return (
     <Container className='mt-4'>
-      <h2>인기 TV</h2>
+      <h2>인기 TV TOP 20</h2>
       <MediaList items={tvs} type={"tv"} />
     </Container>
   );

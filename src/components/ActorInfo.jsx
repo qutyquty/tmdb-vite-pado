@@ -10,18 +10,18 @@ const ActorInfo = ({ actor, knownFor, images }) => {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 6, // 한 화면에 6개
+    slidesToShow: 6, // 기본 PC 화면
     slidesToScroll: 6, // 한번에 6개씩 이동
     responsive: [
       {
-        breakpoint: 992, // 화면이 작아지면
+        breakpoint: 1024, // 태블릿 (1024px 이하)
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 4,
+          slidesToScroll: 4,
         },
       },
       {
-        breakpoint: 576,
+        breakpoint: 768, // 모바일 (768px 이하)
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,

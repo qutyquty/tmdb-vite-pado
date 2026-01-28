@@ -11,14 +11,36 @@ const tmdb = axios.create({
   },
 });
 
-export const getPopularMovies = async () => {
-  const res = await tmdb.get("/movie/popular");
-  return res.data.results;
+export const getPopularMovies = async (pages = 1) => {
+  const results = [];
+  try {
+    for (let i = 1; i <= pages; i++) {
+      const res = await tmdb.get("/movie/popular", {
+        params: { i },
+      });
+      results.push(...res.data.results);
+    }    
+    return results;
+  } catch (error) {
+    console.error("getPopularMovies 에러: ", error);
+    return [];
+  }
 };
 
-export const getPopularTvs = async () => {
-  const res = await tmdb.get("/tv/popular");
-  return res.data.results;
+export const getPopularTvs = async (pages = 1) => {
+  const results = [];
+  try {
+    for (let i = 1; i <= pages; i++) {
+      const res = await tmdb.get("/tv/popular", {
+        params: { i },
+      });
+      results.push(...res.data.results);
+    }    
+    return results;
+  } catch (error) {
+    console.error("getPopularTvs 에러: ", error);
+    return [];
+  }  
 };
 
 // 상세 정보 가져오기
