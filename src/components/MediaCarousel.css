@@ -1,0 +1,66 @@
+/* 전체 캐로셀 아이템 이미지 */
+.carousel-item img {
+  filter: brightness(60%) contrast(110%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item img:hover {
+  transform: scale(1.05); /* 살짝 확대 효과 */
+}
+
+/* 캡션 영역 */
+.carousel-caption {
+  background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
+  padding: 30px;
+  border-radius: 12px;
+  text-align: left;
+  max-width: 70%;
+  margin: auto;
+}
+
+.carousel-caption h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ff4757; /* 네온 레드 */
+  text-shadow: 0 0 15px rgba(255,71,87,0.9);
+}
+
+.carousel-caption p {
+  font-size: 1.1rem;
+  color: #f1f2f6;
+  text-shadow: 0 0 8px rgba(0,0,0,0.8);
+}
+
+/* 네비게이션 버튼 */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-image: none;
+}
+
+.carousel-control-prev-icon::after {
+  content: '⟵';
+  font-size: 2.5rem;
+  color: #ff6b81;
+  text-shadow: 0 0 12px rgba(255,107,129,0.9);
+}
+
+.carousel-control-next-icon::after {
+  content: '⟶';
+  font-size: 2.5rem;
+  color: #ff6b81;
+  text-shadow: 0 0 12px rgba(255,107,129,0.9);
+}
+
+/* 인디케이터 (하단 점) */
+.carousel-indicators [data-bs-target] {
+  background-color: #fff;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255,255,255,0.8);
+}
+
+.carousel-indicators .active {
+  background-color: #ff4757;
+  box-shadow: 0 0 10px rgba(255,71,87,0.9);
+}

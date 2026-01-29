@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 
 import { getPopularMovies, getPopularTvs } from '../api/tmdbApi';
-import { movieGenreMap, tvGenreMap } from "../config/genreConfig";
-import GenreChart from '../components/GenreChart';
+import MediaCarousel from '../components/MediaCarousel';
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
@@ -12,13 +11,13 @@ const HomePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const dataMovies = await getPopularMovies(5); // 5페이지(5*20) -> 100개
-        setMovies(dataMovies);
+        const dataMovies = await getPopularMovies(1);
+        setMovies(dataMovies.slice(0, 10));
 
-        const dataTvs = await getPopularTvs(5); // 5페이지(5*20) -> 100개
-        setTvs(dataTvs);
+        const dataTvs = await getPopularTvs(1);
+        setTvs(dataTvs.slice(0, 10));
       } catch (error) {
-        console.error("HomePage 에러: ", error);
+        console.error("HomePage 에러; ", error);
       }
     };
     fetchData();
@@ -26,10 +25,20 @@ const HomePage = () => {
 
   return (
     <Container className='mt-4'>
-      <h2>TMDB 인기 영화 TOP 100 장르별 분포</h2>
-      <GenreChart mts={movies} genreMap={movieGenreMap} />
-      <h2>TMDB 인기 TV TOP 100 장르별 분포</h2>
-      <GenreChart mts={tvs} genreMap={tvGenreMap} />
+      <h2 className="text-center my-4">인기 영화 TOP 10</h2>
+      { movies.length > 0 ? (
+          <MediaCarousel mts={movies} type={"movie"} />
+        ) : (
+          <p className='text-center'>영화를 불러오는 중...</p>
+        )
+      }
+      <h2 className="text-center my-4">인기 TV TOP 10</h2>
+      { tvs.length > 0 ? (
+          <MediaCarousel mts={tvs} type={"tv"} />
+        ) : (
+          <p className='text-center'>TV를 불러오는 중...</p>
+        )
+      }
     </Container>
   );
 };
