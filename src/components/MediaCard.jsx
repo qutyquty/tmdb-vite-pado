@@ -23,7 +23,12 @@ const MediaCard = ({ item, type }) => {
         <Card.Body>
           <Card.Title className='mb-2'>{item.title || item.name}</Card.Title>
           <Card.Text className='text-muted'>
-            {typeImg}{" "}{item.release_date || item.first_air_date}
+            <div>
+              {typeImg}{" "}{item.release_date || item.first_air_date}              
+            </div>
+            <div className='text-center'>
+              {item.roleType}
+            </div>
           </Card.Text>
         </Card.Body>
       </Card>

@@ -57,7 +57,17 @@ const ActorInfo = ({ actor, knownFor, images }) => {
 
         {/* 오른쪽 정보 */}
         <Col md={8}>
-          <h2>{actor.name}</h2>
+          <h2>
+            {actor.name}{" "}
+            {/* <a href={`/tmdb-vite-pado/actor/${actor.id}/career`} style={{ marginLeft: "10px"}}> */}
+            <Link to={`/actor/${actor.id}/career`}
+              state={{ actor }}
+              style={{ marginLeft: "10px"}}
+            >
+              <span role='img' aria-label="chart">📊</span>
+            </Link>
+            {/* </a> */}
+          </h2>
           {actor.birthday && <p>🎂 {actor.birthday}</p>}
           {actor.place_of_birth && <p>📍 {actor.place_of_birth}</p>}
           {actor.known_for_department && <p>🎭 {actor.known_for_department}</p>}

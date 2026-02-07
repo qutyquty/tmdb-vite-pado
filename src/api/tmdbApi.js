@@ -66,12 +66,18 @@ export const getTvCredits = async (id) => {
 
 export const getActorMovieCredits = async (id) => {
   const res = await tmdb.get(`/person/${id}/movie_credits`);
-  return res.data.cast;
+  return res.data.cast.map(c => ({
+    ...c,
+    roleType: c.order <= 2 ? '주연' : '조연'
+  }));
 };
 
 export const getActorTvCredits = async (id) => {
   const res = await tmdb.get(`/person/${id}/tv_credits`);
-  return res.data.cast;
+  return res.data.cast.map(c => ({
+    ...c,
+    roleType: c.order <= 2 ? '주연' : '조연'
+  }));
 };
 
 // 배우 기본 정보
@@ -104,16 +110,10 @@ export const getActorTopMainRolesByVoteCount = async (id, limit = 10) => {
   const res = await tmdb.get(`/person/${id}/combined_credits`);
   const allWorks = res.data.cast;
 
-  // 주연작 필터링
+  // 주연작 필터링 (order 기준)
   const mainRoles = allWorks.filter(work => {
-    if (!work.character) return false;
-    const lowerChar = work.character.toLowerCase();
-    return !(
-      lowerChar.includes("uncredited") ||
-      lowerChar.includes("voice") ||
-      lowerChar.includes("cameo") ||
-      lowerChar.includes("extra")
-    );
+    // order 값이 존재하고, 2 이하일 경우 주연으로 간주
+    return typeof work.order === "number" && work.order <= 2;
   });
 
   // vote_count 기준 내림차순 정렬
@@ -150,4 +150,31 @@ export const searchMulti = async (query, page = 1) => {
     ...res.data,
     results: filteredResults,
   };
+};
+
+// 배우의 전체 커리어 연도별 집계 (영화+TV)
+export const getActorCareerByYear = async (id) => {
+  const [movies, tvs] = await Promise.all([
+    getActorMovieCredits(id),
+    getActorTvCredits(id),
+  ]);
+
+  const allCredits = [...movies, ...tvs];
+
+  const creditsByYear = allCredits.reduce((acc, item) => {
+    const date = item.release_date || item.first_air_date;
+    if (!date) return acc;
+    const year = date.slice(0, 4);
+
+    if (!acc[year]) acc[year] = { year, lead: 0, support: 0 };
+    if (item.roleType === "주연") acc[year].lead++;
+    else acc[year].support++;
+
+    return acc;
+  }, {});
+
+  console.log("creditsByYear: ", creditsByYear);
+  return Object.values(creditsByYear).sort(
+    (a, b) => parseInt(a.year) - parseInt(b.year)
+  );
 };

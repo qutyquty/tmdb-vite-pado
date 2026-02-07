@@ -7,6 +7,7 @@ import MoviesPage from './pages/MoviesPage';
 import TvsPage from './pages/TvsPage';
 import DetailPage from './pages/DetailPage';
 import ActorPage from './pages/ActorPage';
+import ActorStatPage from './pages/ActorStatPage';
 import SearchPage from './pages/SearchPage';
 import StatisticsPage from './pages/StatisticsPage';
 
@@ -24,6 +25,7 @@ function App() {
             <Route path='/tvs' element={<TvsPage />} />
             <Route path='/:type/:id' element={<DetailPage />} />
             <Route path='/actor/:id' element={<ActorPage />} />
+            <Route path='/actor/:id/career' element={<ActorStatPage />} />
             <Route path='/search' element={<SearchPage />} />
             <Route path='/statistics' element={<StatisticsPage />} />
           </Routes>

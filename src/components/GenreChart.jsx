@@ -23,7 +23,7 @@ const GenreChart = ({ mts, genreMap }) => {
   return (
     <>
       <Row>
-        <Col md={6} xs={12}>
+        <Col md={8} xs={12}>
           <div style={{ width: '100%', height: 400 }}>
             <ResponsiveContainer>
               <PieChart>
