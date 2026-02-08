@@ -178,3 +178,9 @@ export const getActorCareerByYear = async (id) => {
     (a, b) => parseInt(a.year) - parseInt(b.year)
   );
 };
+
+// 시리즈(컬렉션) 정보 가져오기
+export const getCollection = async (id) => {
+  const res = await tmdb.get(`/collection/${id}`);
+  return res.data;
+};

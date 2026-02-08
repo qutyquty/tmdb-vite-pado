@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, Col, Row } from 'react-bootstrap';
 
 const MediaIntro = ({ data, type }) => {
+  console.log("data: ", data);
+  const navigate = useNavigate();
   const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500";
   const BACKDROP_BASE_URL = "https://image.tmdb.org/t/p/w1280";
 
@@ -44,7 +47,21 @@ const MediaIntro = ({ data, type }) => {
 
           {/** 오른쪽 정보 */}
           <Col md={8}>
-            <h2>{data.title || data.name}</h2>
+            <h2>
+              {data.title || data.name}
+              {data.belongs_to_collection && (
+                <span style={{ marginLeft: "8px", cursor: "pointer" }} 
+                  title='시리즈 영화'
+                  onClick={() =>
+                    navigate(`/collection/${data.belongs_to_collection.id}`, {
+                      state: { collection: data.belongs_to_collection },
+                    })
+                  }
+                >
+                  📚
+                </span>
+              )}
+            </h2>
             <p>📅 {data.release_date || data.first_air_date}</p>
             <p>
               🎭 장르: {" "}
