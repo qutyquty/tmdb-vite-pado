@@ -35,8 +35,12 @@ const CollectionPage = () => {
           backgroundPosition: "center",
           color: "#fff",
           padding: "100px 20px",
-          textAlign: "center",
           position: "relative",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-end",
+          alignItems: "flex-start",
+          height: "500px",
         }}
       >
         {/* 반투명 오버레이 */}
@@ -51,19 +55,22 @@ const CollectionPage = () => {
           }}
         ></div>
 
-        {/* 텍스트 */}
-        <div style={{ position: "relative", zIndex: 1 }}>
-          <h1 style={{ fontWeight: "bold" }}>{collection.name}</h1>
-          {collection.parts?.length > 0 && (
-            <p style={{ fontSize: "15px" }}>
-              📅 첫 작품 개봉일: {collection.parts[0].release_date}
-            </p>
-          )}
+        {/* 텍스트 영역 */}
+        <div style={{ position: "relative", zIndex: 1, textAlign: "left" }}>
+          <div style={{ display: "flex", alignItems: "baseline", gap: "10px" }}>
+            <h1 style={{ fontWeight: "bold", margin: 0 }}>{collection.name}</h1>
+            {collection.parts?.length > 0 && (
+              <span style={{ fontSize: "15px" }}>
+                📅 첫 작품 개봉일: {collection.parts[0].release_date}
+              </span>
+            )}
+          </div>
+          
           {collection.overview && (
             <p
               style={{
-                maxWidth: "700px",
-                margin: "20px auto",
+                maxWidth: "800px",
+                marginTop: "10px",
                 fontSize: "16px",
                 lineHeight: "1.6",
               }}
