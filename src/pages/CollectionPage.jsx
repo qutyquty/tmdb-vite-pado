@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Container, Row, Col, Card } from "react-bootstrap";
 
 import { getCollection } from "../api/tmdbApi";
+import MediaList from '../components/MediaList';
 
 const CollectionPage = () => {
   const { id } = useParams();
@@ -24,10 +25,9 @@ const CollectionPage = () => {
     return <p>Loading...</p>;
   }
 
-
   return (
     <Container className="mt-4">
-{/* 상단 Hero 섹션 */}
+      {/* 상단 Hero 섹션 */}
       <div
         style={{
           backgroundImage: `url(https://image.tmdb.org/t/p/w1280${collection.backdrop_path})`,
@@ -55,7 +55,7 @@ const CollectionPage = () => {
         <div style={{ position: "relative", zIndex: 1 }}>
           <h1 style={{ fontWeight: "bold" }}>{collection.name}</h1>
           {collection.parts?.length > 0 && (
-            <p style={{ fontSize: "18px" }}>
+            <p style={{ fontSize: "15px" }}>
               📅 첫 작품 개봉일: {collection.parts[0].release_date}
             </p>
           )}
@@ -76,7 +76,8 @@ const CollectionPage = () => {
 
       {/* 하단 영화 리스트 */}
       <Container className="mt-5">
-        <Row>
+        <MediaList items={collection.parts} type={"movie"} />
+        {/* <Row>
           {collection.parts.map((movie) => (
             <Col md={3} sm={6} xs={12} key={movie.id} className="mb-4">
               <Card className="h-100 shadow-sm">
@@ -94,7 +95,7 @@ const CollectionPage = () => {
               </Card>
             </Col>
           ))}
-        </Row>
+        </Row> */}
       </Container>
  
     </Container>
