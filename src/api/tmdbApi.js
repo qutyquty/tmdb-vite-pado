@@ -166,14 +166,30 @@ export const getActorCareerByYear = async (id) => {
     if (!date) return acc;
     const year = date.slice(0, 4);
 
-    if (!acc[year]) acc[year] = { year, lead: 0, support: 0 };
-    if (item.roleType === "주연") acc[year].lead++;
-    else acc[year].support++;
+    if (!acc[year]) {
+      acc[year] = { year, lead: 0, support: 0, leadCredits: [], supportCredits: [] };
+    }
+
+    const credits = {
+      id: item.id,
+      title: item.title || item.name,
+      poster_path: item.poster_path,
+      release_date: item.release_date,
+      first_air_date: item.first_air_date,
+      media_type: item.media_type || (item.release_date ? "movie" : "tv")
+    };
+
+    if (item.roleType === "주연") {
+      acc[year].lead++;
+      acc[year].leadCredits.push(credits);
+    } else {
+      acc[year].support++;
+      acc[year].supportCredits.push(credits);
+    } 
 
     return acc;
   }, {});
 
-  console.log("creditsByYear: ", creditsByYear);
   return Object.values(creditsByYear).sort(
     (a, b) => parseInt(a.year) - parseInt(b.year)
   );

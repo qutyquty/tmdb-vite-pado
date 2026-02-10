@@ -12,7 +12,7 @@ const MediaCard = ({ item, type }) => {
     : "https://placehold.co/300x450?text=No+Image";
 
   return (
-    <Col xs={6} sm={4} md={2} className='mb-4'>
+    <Col key={item.id} xs={6} md={4} lg={3} className='mb-4'>
       <Card className='h-100 border shadow-sm'>
         <Link to={`/${type}/${item.id}`}>
           <Card.Img variant='top'
@@ -21,7 +21,7 @@ const MediaCard = ({ item, type }) => {
           />
         </Link>
         <Card.Body>
-          <Card.Title className='mb-2'>{item.title || item.name}</Card.Title>
+          <Card.Title className='mb-2' style={{ fontSize: "0.9rem" }}>{item.title || item.name}</Card.Title>
           <Card.Text className='text-muted'>
             <div>
               {typeImg}{" "}{item.release_date || item.first_air_date}              
