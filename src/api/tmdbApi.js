@@ -56,7 +56,12 @@ export const getTvDetail = async (id) => {
 
 export const getMovieCredits = async (id) => {
   const res = await tmdb.get(`/movie/${id}/credits`);
-  return res.data.cast;
+  const { cast, crew } = res.data;
+
+  // 감독 찾기
+  const directors = crew.filter(member => member.job === "Director");
+
+  return { cast, directors };
 };
 
 export const getTvCredits = async (id) => {
@@ -199,4 +204,36 @@ export const getActorCareerByYear = async (id) => {
 export const getCollection = async (id) => {
   const res = await tmdb.get(`/collection/${id}`);
   return res.data;
+};
+
+export const getCrewMovieCredits = async (id) => {
+  const res = await tmdb.get(`/person/${id}/movie_credits`);
+  const { crew } = res.data;
+
+  // 감독으로 참여한 영화만 필터링
+  const directorMovies = crew.filter(work => work.job === "Director");
+
+  return directorMovies;
+};
+
+export const getCrewTvCredits = async (id) => {
+  const res = await tmdb.get(`/person/${id}/tv_credits`);
+  const { crew } = res.data;
+
+  // 연찰자로 참여한 TV 작품 필터링
+  const directorTV = crew.filter(work => work.job.includes("Director"));
+
+  return directorTV;
+};
+
+// 배우 기본 정보
+export const getCrewDetail = async (id) => {
+  try {
+    const res = await tmdb.get(`/person/${id}`);
+    console.log("getCrewDetail data: ", res.data);
+    return res.data;
+  } catch (error) {
+    console.error("getCrewDetail 에러: ", error);
+    throw error;
+  }
 };

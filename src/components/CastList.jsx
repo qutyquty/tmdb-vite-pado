@@ -3,7 +3,7 @@ import { Card, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Slider from "react-slick";
 
-const CastList = ({ credits }) => {
+const CastList = ({ casts, directors }) => {
   const settings = {
     dots: true,
     infinite: false,
@@ -29,13 +29,30 @@ const CastList = ({ credits }) => {
   };
 
   const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500";
-  console.log("credits: ", credits);
 
   return (
     <div className='p-4'>
-      <h3>주요 출연진</h3>
+      <h3>주요 스태프&출연진</h3>
       <Slider {...settings}>
-        {credits.slice(0, 10).map((actor) => (
+        {directors && directors.map((d) => (
+          <Col md={2} key={d.id} className='mb-4'>
+            <Card className='h-100 boarder shadow-sm'>
+              <Link to={`/crew/${d.id}`}>
+                {d.profile_path && (
+                  <Card.Img variant='top'
+                    src={`${IMG_BASE_URL}${d.profile_path}`}
+                    alt={d.name}
+                  />
+                )}
+              </Link>
+              <Card.Body>
+                <Card.Title className='mb-2'>{d.name}</Card.Title>
+                <Card.Text className='text-muted'>Director</Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+        {casts.slice(0, 10).map((actor) => (
           <Col md={2} key={actor.cast_id || actor.credit_id} className='mb-4'>
             <Card className='h-100 boarder shadow-sm'>
               <Link to={`/actor/${actor.id}`}>

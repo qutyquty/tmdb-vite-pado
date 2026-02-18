@@ -2,8 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, Col, Row } from 'react-bootstrap';
 
-const MediaIntro = ({ data, type }) => {
-  console.log("data: ", data);
+const MediaIntro = ({ data, type, directors }) => {
   const navigate = useNavigate();
   const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500";
   const BACKDROP_BASE_URL = "https://image.tmdb.org/t/p/w1280";
@@ -80,7 +79,6 @@ const MediaIntro = ({ data, type }) => {
                 <p>🎬 에피소드 수: {data.number_of_episodes}</p>
               </>
             )}
-
             <p>{data.overview}</p>
           </Col>          
         </Row>

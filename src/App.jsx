@@ -11,6 +11,7 @@ import ActorStatPage from './pages/ActorStatPage';
 import SearchPage from './pages/SearchPage';
 import StatisticsPage from './pages/StatisticsPage';
 import CollectionPage from './pages/CollectionPage';
+import CrewPage from './pages/CrewPage';
 
 import './App.css';
 
@@ -30,6 +31,7 @@ function App() {
             <Route path='/search' element={<SearchPage />} />
             <Route path='/statistics' element={<StatisticsPage />} />
             <Route path='/collection/:id' element={<CollectionPage />} />
+            <Route path='/crew/:id' element={<CrewPage />} />
           </Routes>
         </main>
         <Footer />
