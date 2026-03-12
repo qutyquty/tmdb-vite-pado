@@ -237,3 +237,19 @@ export const getCrewDetail = async (id) => {
     throw error;
   }
 };
+
+export const getMovieGenres = async () => {
+  const res = await tmdb.get(`/genre/movie/list`);
+  return res.data;
+};
+
+export const getMoviesByGenre = async (genreId, page = 1, sortBy = "popularity.desc") => {
+  const res = await tmdb.get(`/discover/movie`, {
+    params: {
+      with_genres: genreId,
+      page,
+      sort_by: sortBy,
+    },
+  });
+  return res.data;
+};

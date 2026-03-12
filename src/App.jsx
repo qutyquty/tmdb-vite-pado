@@ -8,6 +8,7 @@ import TvsPage from './pages/TvsPage';
 import DetailPage from './pages/DetailPage';
 import ActorPage from './pages/ActorPage';
 import ActorStatPage from './pages/ActorStatPage';
+import GenrePage from './pages/GenrePage';
 import SearchPage from './pages/SearchPage';
 import StatisticsPage from './pages/StatisticsPage';
 import CollectionPage from './pages/CollectionPage';
@@ -28,6 +29,7 @@ function App() {
             <Route path='/:type/:id' element={<DetailPage />} />
             <Route path='/actor/:id' element={<ActorPage />} />
             <Route path='/actor/:id/career' element={<ActorStatPage />} />
+            <Route path='/mgenres' element={<GenrePage />} />
             <Route path='/search' element={<SearchPage />} />
             <Route path='/statistics' element={<StatisticsPage />} />
             <Route path='/collection/:id' element={<CollectionPage />} />

@@ -18,6 +18,7 @@ const Header = () => {
               <Nav.Link href="/tmdb-vite-pado/">Home</Nav.Link>
               <Nav.Link href="/tmdb-vite-pado/movies">Movie</Nav.Link>
               <Nav.Link href="/tmdb-vite-pado/tvs">TV</Nav.Link>
+              <Nav.Link href="/tmdb-vite-pado/mgenres">M-Genre</Nav.Link>
               <Nav.Link href="/tmdb-vite-pado/search">Search</Nav.Link>
               <Nav.Link href="/tmdb-vite-pado/statistics">Statistics</Nav.Link>
             </Nav>
